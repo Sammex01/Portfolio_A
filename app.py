@@ -64,13 +64,11 @@ def load_sample_data():
     data = {
         'Order_Date': pd.date_range(start='2026-01-01', periods=100, freq='D'),
         'Category': ['Electronics', 'Clothing', 'Home', 'Books'] * 25,
-        'Revenue': [120, 45, 200, 15, 310, 80, 150, 25] * 12 + [100, 50],
-        'Units_Sold': [2, 1, 4, 1, 5, 2, 3, 1] * 12 + [2, 1],
+        'Revenue': [120, 45, 200, 15] * 25,
+        'Units_Sold': [2, 1, 4, 1] * 25,
         'Region': ['North', 'South', 'East', 'West'] * 25
     }
     return pd.DataFrame(data)
-
-df = load_sample_data()
 
 # Interactive Filters
 filter_col1, filter_col2 = st.columns(2)
