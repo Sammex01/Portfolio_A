@@ -1,5 +1,4 @@
-Dependencies
-1)streamlit
-2)pandas
-3)plotly
-4)duckdb
+streamlit
+pandas
+plotly
+duckdb
