@@ -17,7 +17,7 @@ st.set_page_config(
 # 2. SIDEBAR NAVIGATION & PROFILE
 # ---------------------------------------------------------
 with st.sidebar:
-    st.image("https://via.placeholder.com/150", width=120)  # Add your profile photo URL
+    st.image("https://via.placeholder.com/150", width=120)  # Replace with your photo URL
     st.title("Your Name")
     st.caption("Data Analyst | SQL, Python, Tableau")
     st.markdown("---")
@@ -58,7 +58,7 @@ st.markdown("""
 *Interact with the controls below to filter data and run live SQL queries.*
 """)
 
-# Sample Data Generation
+# Data Generation & Initial Assignment
 @st.cache_data
 def load_sample_data():
     data = {
@@ -69,6 +69,9 @@ def load_sample_data():
         'Region': ['North', 'South', 'East', 'West'] * 25
     }
     return pd.DataFrame(data)
+
+# Load data FIRST before calling interactive filter widgets
+df = load_sample_data()
 
 # Interactive Filters
 filter_col1, filter_col2 = st.columns(2)
@@ -91,7 +94,7 @@ filtered_df = df[
     (df['Region'].isin(selected_regions))
 ]
 
-# Tabs for Code vs Visualizations
+# Tabs for Visualizations vs SQL Runner vs Data Table
 tab1, tab2, tab3 = st.tabs(["📊 Interactive Charts", "💻 Live SQL Query Runner", "📁 Raw Dataset"])
 
 with tab1:
