@@ -128,17 +128,16 @@ with col_left:
 
 # --- RIGHT COLUMN: Metrics & Featured Analyses ---
 with col_right:
-   # Featured Analyses Cards
+# Featured Analyses Cards (Bulletproof HTML)
     st.markdown("""
 <div class="custom-card">
     <p style="font-size: 0.75rem; letter-spacing: 2px; color: #5a6b7c; margin-bottom: 20px;">FEATURED ANALYSES</p>
-    
     <div style="margin-bottom: 30px; border-bottom: 1px solid #1c2e40; padding-bottom: 20px;">
         <p style="color: #20c997; font-size: 0.7rem; letter-spacing: 1px; margin-bottom: 5px;">KPI FRAMEWORK</p>
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
             <div style="width: 70%;">
                 <h3 class="serif-text" style="margin: 0 0 10px 0; font-size: 1.4rem;">KPI Command Center</h3>
-                <p style="font-size: 0.85rem;">Replaced 14 conflicting spreadsheets with a single governed KPI layer and one executive Power BI board.</p>
+                <p style="font-size: 0.85rem; margin: 0;">Replaced 14 conflicting spreadsheets with a single governed KPI layer and one executive Power BI board.</p>
             </div>
             <div style="text-align: right;">
                 <div style="font-size: 1.5rem; color: #fff; font-family: 'Inter';">14 &rarr; 1</div>
@@ -146,13 +145,12 @@ with col_right:
             </div>
         </div>
     </div>
-    
     <div style="margin-bottom: 30px; border-bottom: 1px solid #1c2e40; padding-bottom: 20px;">
         <p style="color: #20c997; font-size: 0.7rem; letter-spacing: 1px; margin-bottom: 5px;">BUSINESS ANALYSIS</p>
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
             <div style="width: 70%;">
                 <h3 class="serif-text" style="margin: 0 0 10px 0; font-size: 1.4rem;">Business Performance Analysis</h3>
-                <p style="font-size: 0.85rem;">Cohort and channel margin analysis that found where growth was quietly being sold at a loss.</p>
+                <p style="font-size: 0.85rem; margin: 0;">Cohort and channel margin analysis that found where growth was quietly being sold at a loss.</p>
             </div>
             <div style="text-align: right;">
                 <div style="font-size: 1.5rem; color: #fff; font-family: 'Inter';">+4.8pt</div>
@@ -160,13 +158,12 @@ with col_right:
             </div>
         </div>
     </div>
-    
     <div>
         <p style="color: #20c997; font-size: 0.7rem; letter-spacing: 1px; margin-bottom: 5px;">RISK MANAGEMENT</p>
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
             <div style="width: 70%;">
                 <h3 class="serif-text" style="margin: 0 0 10px 0; font-size: 1.4rem;">Credit Risk Scoring</h3>
-                <p style="font-size: 0.85rem;">A transparent logistic scorecard that beat the legacy rules engine without becoming a black box.</p>
+                <p style="font-size: 0.85rem; margin: 0;">A transparent logistic scorecard that beat the legacy rules engine without becoming a black box.</p>
             </div>
             <div style="text-align: right;">
                 <div style="font-size: 1.5rem; color: #fff; font-family: 'Inter';">0.81</div>
@@ -175,4 +172,14 @@ with col_right:
         </div>
     </div>
 </div>
-    """, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
+    
+st.markdown("<br><br><br>", unsafe_allow_html=True)
+
+# 5. FOOTER
+st.markdown("""
+    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #1c2e40; padding-top: 20px; font-size: 0.8rem; color: #5a6b7c;">
+        <div>Alabi Samuel — KPI systems • Business analysis • Risk modelling</div>
+        <div>alabisamuel.analytics@gmail.com</div>
+    </div>
+""", unsafe_allow_html=True)
