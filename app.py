@@ -7,91 +7,74 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-## 2. GLOBAL CSS (Applying the exact Palette, Fonts, and Texture)
+# 2. GLOBAL CSS (Matching the Prototype)
 st.markdown("""
     <style>
-    /* Import Instrument Serif and Work Sans */
-    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600;700&display=swap');
 
-    /* Global Background, Font, and Fine Grid Texture */
+    /* Global Background and Text Colors */
     .stApp {
-        background-color: #0d1b2a;
-        background-image: 
-            linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), 
-            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-        background-size: 40px 40px;
+        background-color: #0b131e;
         color: #8b9eb0;
-        font-family: 'Work Sans', sans-serif;
+        font-family: 'Inter', sans-serif;
     }
     
-    /* Completely remove top header line and its ghost space */
+    /* Hide top header line */
     [data-testid="stHeader"] {
         display: none !important;
         height: 0px !important;
         padding: 0px !important;
     }
     
-    /* Pull the main container all the way to the absolute top */
+    /* Pull the main container all the way to the top */
     .block-container {
-        padding-top: 0rem !important;
+        padding-top: 0.5rem !important;
         padding-bottom: 0rem !important;
         padding-left: 3rem !important;
         padding-right: 3rem !important;
         max-width: 100% !important;
     }
-
-    /* Typography Overrides (Instrument Serif for Headings) */
+    
+    /* Typography Overrides */
     h1, h2, h3, .serif-text {
-        font-family: 'Instrument Serif', serif;
+        font-family: 'Playfair Display', serif;
         color: #ffffff;
-        font-weight: 400;
-        letter-spacing: 0.5px;
     }
-    h1 { font-size: 4rem; margin-bottom: 10px; line-height: 1.1; }
-    h2 { font-size: 2rem; margin-bottom: 20px; }
+    h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 10px; }
+    h2 { font-size: 1.8rem; margin-bottom: 20px; }
     
-    /* Neon Mint Accent Colors & Glow */
-    .teal-accent { 
-        color: #2dd4a8; 
-        text-shadow: 0 0 8px rgba(45, 212, 168, 0.4);
-    }
+    /* Teal Accent Color */
+    .teal-accent { color: #20c997; }
     
-    /* Panels / Card Containers */
+    /* Card Containers */
     .custom-card {
-        background-color: #1b4332;
+        background-color: #111d2b;
         padding: 25px;
-        border-radius: 4px; /* Sharper corners for instrument panel feel */
-        border: 1px solid rgba(45, 212, 168, 0.15); /* Thin accent rules */
+        border-radius: 8px;
+        border: 1px solid #1c2e40;
         height: 100%;
     }
     
-    /* Big Metric Numbers with Tabular Figures and Subtle Glow */
+    /* Big Metric Numbers */
     .big-metric {
-        font-size: 2.8rem;
-        color: #2dd4a8;
-        font-family: 'Work Sans', sans-serif;
+        font-size: 2.5rem;
+        color: #20c997;
+        font-family: 'Inter', sans-serif;
         font-weight: 600;
         line-height: 1.2;
-        font-variant-numeric: tabular-nums;
-        text-shadow: 0 0 12px rgba(45, 212, 168, 0.35);
     }
     
     /* Custom Button */
     .stButton>button {
-        background-color: #2dd4a8;
-        color: #0d1b2a;
+        background-color: #20c997;
+        color: #0b131e;
         border: none;
-        border-radius: 2px;
-        font-family: 'Work Sans', sans-serif;
+        border-radius: 4px;
         font-weight: 600;
         padding: 10px 24px;
-        transition: all 0.3s ease;
+        transition: opacity 0.3s ease;
     }
-    .stButton>button:hover { 
-        background-color: #73ffb8; 
-        color: #0d1b2a; 
-        box-shadow: 0 0 12px rgba(115, 255, 184, 0.4);
-    }
+    .stButton>button:hover { opacity: 0.8; color: #0b131e; }
     
     /* Progress Bars Toolbelt */
     .tool-row {
@@ -101,20 +84,18 @@ st.markdown("""
         margin-bottom: 15px;
         font-size: 0.9rem;
         color: #e2e8f0;
-        font-variant-numeric: tabular-nums;
     }
     .progress-bar-bg {
         flex-grow: 1;
-        height: 4px; /* Thin rules */
-        background-color: rgba(255,255,255,0.05);
+        height: 6px;
+        background-color: #1c2e40;
         margin: 0 15px;
-        border-radius: 1px;
+        border-radius: 3px;
         overflow: hidden;
     }
     .progress-bar-fill {
         height: 100%;
-        background-color: #2dd4a8;
-        box-shadow: 0 0 8px rgba(45, 212, 168, 0.5); /* Inner glow */
+        background-color: #20c997;
     }
     </style>
 """, unsafe_allow_html=True)
