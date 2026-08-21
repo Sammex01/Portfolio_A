@@ -14,9 +14,13 @@ st.markdown("""
 
     /* Global Background and Text Colors */
     .stApp {
-        background-color: #0b131e;
+        background-color: #091725;
+        background-image: 
+            linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), 
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 40px 40px;
         color: #8b9eb0;
-        font-family: 'Inter', sans-serif;
+        font-family: 'Work Sans', sans-serif;
     }
     
     /* Hide top header line */
@@ -37,79 +41,77 @@ st.markdown("""
     
     /* Typography Overrides */
     h1, h2, h3, .serif-text {
-        font-family: 'Playfair Display', serif;
+        font-family: 'Instrument Serif', serif;
         color: #ffffff;
+        font-weight: 400;
+        letter-spacing: 0.5px;
     }
-    h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 10px; }
-    h2 { font-size: 1.8rem; margin-bottom: 20px; }
+    h1 { font-size: 4rem; margin-bottom: 10px; line-height: 1.1; }
+    h2 { font-size: 2rem; margin-bottom: 20px; }
     
-    /* Teal Accent Color */
-    .teal-accent { color: #20c997; }
+    /* Neon Mint Accent Colors & Glow */
+    .teal-accent { 
+        color: #37D8A8; 
+        text-shadow: 0 0 8px rgba(55, 216, 168, 0.4);
+    }
     
     /* Card Containers */
-    .custom-card {
-        background-color: #111d2b;
+   .custom-card {
+        background-color: #10212F;
         padding: 25px;
-        border-radius: 8px;
-        border: 1px solid #1c2e40;
+        border-radius: 4px; 
+        border: 1px solid rgba(55, 216, 168, 0.15); 
         height: 100%;
     }
     
     /* Big Metric Numbers */
-    .big-metric {
-        font-size: 2.5rem;
-        color: #20c997;
-        font-family: 'Inter', sans-serif;
+   .big-metric {
+        font-size: 2.8rem;
+        color: #37D8A8;
+        font-family: 'Work Sans', sans-serif;
         font-weight: 600;
         line-height: 1.2;
+        font-variant-numeric: tabular-nums;
+        text-shadow: 0 0 12px rgba(55, 216, 168, 0.35);
     }
     
     /* Custom Button */
     .stButton>button {
-        background-color: #20c997;
-        color: #0b131e;
+        background-color: #37D8A8;
+        color: #091725;
         border: none;
-        border-radius: 4px;
+        border-radius: 2px;
+        font-family: 'Work Sans', sans-serif;
         font-weight: 600;
         padding: 10px 24px;
-        transition: opacity 0.3s ease;
+        transition: all 0.3s ease;
     }
-    .stButton>button:hover { opacity: 0.8; color: #0b131e; }
+    .stButton>button:hover { 
+        background-color: #73ffb8; 
+        color: #091725; 
+        box-shadow: 0 0 12px rgba(115, 255, 184, 0.4);
+    }
     
     /* Progress Bars Toolbelt */
-    .tool-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 15px;
-        font-size: 0.9rem;
-        color: #e2e8f0;
-    }
-    .progress-bar-bg {
-        flex-grow: 1;
-        height: 6px;
-        background-color: #1c2e40;
-        margin: 0 15px;
-        border-radius: 3px;
-        overflow: hidden;
-    }
-    .progress-bar-fill {
-        height: 100%;
-        background-color: #20c997;
+    .stButton>button:hover { 
+        background-color: #73ffb8; 
+        color: #091725; 
+        box-shadow: 0 0 12px rgba(115, 255, 184, 0.4);
     }
     </style>
 """, unsafe_allow_html=True)
 
 # 3. TOP NAVIGATION HEADER (Prototype Match)
+# 3. TOP NAVIGATION HEADER
 st.markdown("""
     <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0 10px 0; border-bottom: 1px solid #1c2e40; margin-bottom: 40px;">
         <div style="color: #fff; font-weight: 600; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
-            <span class="teal-accent" style="font-size: 0.8rem;">●</span> 
+            <span style="color: #37D8A8; font-size: 0.75rem; margin-top: 2px;">●</span> 
             <span>Alabi Samuel</span> 
             <span style="color: #5a6b7c; font-weight: 400;">/ Data Analyst</span>
         </div>
         <div style="display: flex; gap: 15px; font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px; align-items: center;">
-            <span style="color: #20c997; border: 1px solid #fff; padding: 8px 16px; border-radius: 4px; cursor: pointer;">DASHBOARD</span>
+            <span style="color: #37D8A8; border: 1px solid #fff; padding: 8px 16px; border-radius: 4px; cursor: pointer;">DASHBOARD</span>
             <span style="color: #8b9eb0; padding: 8px 16px; cursor: pointer;">CASE STUDIES</span>
             <span style="color: #8b9eb0; padding: 8px 16px; cursor: pointer;">ABOUT</span>
             <span style="color: #8b9eb0; padding: 8px 16px; cursor: pointer;">CONTACT</span>
