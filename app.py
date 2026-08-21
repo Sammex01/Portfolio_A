@@ -20,7 +20,8 @@ st.markdown("""
     }
     
     /* Hide top header line */
-    header {visibility: hidden;}
+    header {display: none !important;}
+    [data-testid="stHeader"] {display: none !important;}
     .block-container {
         padding-top: 2rem !important;
         padding-bottom: 0rem !important;
