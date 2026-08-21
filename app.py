@@ -21,6 +21,12 @@ st.markdown("""
     
     /* Hide top header line */
     header {visibility: hidden;}
+    /* Remove Streamlit default top padding */
+    .block-container {
+        padding-top: 2rem !important;
+        padding-bottom: 0rem !important;
+        max-width: 90% !important;
+    }
     
     /* Typography Overrides */
     h1, h2, h3, .serif-text {
@@ -87,10 +93,20 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# 3. TOP NAVIGATION HEADER (Simulated)
+# 3. TOP NAVIGATION HEADER (Prototype Match)
 st.markdown("""
-    <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid #1c2e40; margin-bottom: 40px;">
-        <div style="color: #fff; font-weight: 600;"><span class="teal-accent">●</span> Alabi Samuel <span style="color: #5a6b7c; font-weight: 400;">/ Data Analyst</span></div>
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0 20px 0; border-bottom: 1px solid #1c2e40; margin-bottom: 40px;">
+        <div style="color: #fff; font-weight: 600; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
+            <span class="teal-accent" style="font-size: 0.8rem;">●</span> 
+            <span>Alabi Samuel</span> 
+            <span style="color: #5a6b7c; font-weight: 400;">/ Data Analyst</span>
+        </div>
+        <div style="display: flex; gap: 15px; font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px; align-items: center;">
+            <span style="color: #20c997; border: 1px solid #fff; padding: 8px 16px; border-radius: 4px; cursor: pointer;">DASHBOARD</span>
+            <span style="color: #8b9eb0; padding: 8px 16px; cursor: pointer;">CASE STUDIES</span>
+            <span style="color: #8b9eb0; padding: 8px 16px; cursor: pointer;">ABOUT</span>
+            <span style="color: #8b9eb0; padding: 8px 16px; cursor: pointer;">CONTACT</span>
+        </div>
     </div>
 """, unsafe_allow_html=True)
 
