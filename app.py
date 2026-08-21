@@ -1,277 +1,218 @@
 import streamlit as st
-import pandas as pd
-import plotly.express as px
-import plotly.graph_objects as go
-import duckdb
 
-# ---------------------------------------------------------
-# 1. PAGE CONFIGURATION & CUSTOM CSS STYLING
-# ---------------------------------------------------------
+# 1. PAGE CONFIGURATION
 st.set_page_config(
-    page_title="Sam | Data Analyst Portfolio",
-    page_icon="📊",
+    page_title="Alabi Samuel | Data Analyst",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
-# Custom CSS for polished UI styling
+# 2. GLOBAL CSS (Matching the Prototype)
 st.markdown("""
     <style>
-    /* Main Background Accent */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600;700&display=swap');
+
+    /* Global Background and Text Colors */
     .stApp {
-        background-color: #0e1117;
+        background-color: #0b131e;
+        color: #8b9eb0;
+        font-family: 'Inter', sans-serif;
+    }
+    
+    /* Hide top header line */
+    header {visibility: hidden;}
+    
+    /* Typography Overrides */
+    h1, h2, h3, .serif-text {
+        font-family: 'Playfair Display', serif;
         color: #ffffff;
     }
+    h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 10px; }
+    h2 { font-size: 1.8rem; margin-bottom: 20px; }
     
-    /* Card Container Styling */
-    div[data-testid="stMetric"] {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 15px 20px;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-    div[data-testid="stMetric"]:hover {
-        transform: translateY(-2px);
-        border-color: #6c5ce7;
-    }
-
-    /* Primary Accent Color for Buttons & Highlights */
-    .stButton>button {
-        background-color: #6c5ce7;
-        color: white;
+    /* Teal Accent Color */
+    .teal-accent { color: #20c997; }
+    
+    /* Card Containers */
+    .custom-card {
+        background-color: #111d2b;
+        padding: 25px;
         border-radius: 8px;
-        border: none;
-        font-weight: 600;
-        padding: 8px 16px;
-        transition: background-color 0.3s;
+        border: 1px solid #1c2e40;
+        height: 100%;
     }
-    .stButton>button:hover {
-        background-color: #5a4bcf;
-        color: white;
-    }
-
-    /* Headings Styling */
-    h1, h2, h3 {
+    
+    /* Big Metric Numbers */
+    .big-metric {
+        font-size: 2.5rem;
+        color: #20c997;
         font-family: 'Inter', sans-serif;
-        font-weight: 700;
+        font-weight: 600;
+        line-height: 1.2;
     }
     
-    /* Expander Container Styling */
-    .streamlit-expanderHeader {
-        background-color: rgba(255, 255, 255, 0.03);
-        border-radius: 8px;
+    /* Custom Button */
+    .stButton>button {
+        background-color: #20c997;
+        color: #0b131e;
+        border: none;
+        border-radius: 4px;
+        font-weight: 600;
+        padding: 10px 24px;
+        transition: opacity 0.3s ease;
+    }
+    .stButton>button:hover { opacity: 0.8; color: #0b131e; }
+    
+    /* Progress Bars Toolbelt */
+    .tool-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        font-size: 0.9rem;
+        color: #e2e8f0;
+    }
+    .progress-bar-bg {
+        flex-grow: 1;
+        height: 6px;
+        background-color: #1c2e40;
+        margin: 0 15px;
+        border-radius: 3px;
+        overflow: hidden;
+    }
+    .progress-bar-fill {
+        height: 100%;
+        background-color: #20c997;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# ---------------------------------------------------------
-# 2. SIDEBAR NAVIGATION & PROFILE
-# ---------------------------------------------------------
-with st.sidebar:
-    st.image("https://api.dicebear.com/7.x/bottts/svg?seed=SamData", width=110)
-    st.title("Sam")
-    st.caption("🚀 Data Analyst | SQL, Python, Excel & Tableau")
-    st.markdown("---")
+# 3. TOP NAVIGATION HEADER (Simulated)
+st.markdown("""
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid #1c2e40; margin-bottom: 40px;">
+        <div style="color: #fff; font-weight: 600;"><span class="teal-accent">●</span> Alabi Samuel <span style="color: #5a6b7c; font-weight: 400;">/ Data Analyst</span></div>
+    </div>
+""", unsafe_allow_html=True)
+
+# 4. MAIN LAYOUT GRID
+col_left, col_right = st.columns([1.2, 1])
+
+# --- LEFT COLUMN: Hero Section & Toolbelt ---
+with col_left:
+    st.markdown("<p style='color: #20c997; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px;'>KPI SYSTEMS • BUSINESS ANALYSIS • RISK MODELLING</p>", unsafe_allow_html=True)
+    st.markdown("<h1>Alabi Samuel</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='font-size: 1.2rem; color: #a0aec0; margin-bottom: 30px; max-width: 90%;'>I turn messy operational data into the two or three numbers a business can actually act on.</p>", unsafe_allow_html=True)
     
-    st.subheader("📬 Connect")
-    st.markdown("🔗 [LinkedIn Profile](#)")
-    st.markdown("🐙 [GitHub Portfolio](#)")
-    st.markdown("✉️ contact@example.com")
-    st.markdown("---")
+    c1, c2 = st.columns([1, 2])
+    with c1:
+        st.button("Read the case studies")
+    with c2:
+        st.markdown("<p style='font-size: 0.85rem; color: #5a6b7c; margin-top: 10px;'>Available worldwide • Remote</p>", unsafe_allow_html=True)
     
-    st.caption("Powered by Python, Streamlit & Plotly")
-
-# ---------------------------------------------------------
-# 3. HERO SECTION & KEY METRICS
-# ---------------------------------------------------------
-st.title("Data Analyst Portfolio 📊")
-st.markdown("### *Turning raw datasets into actionable business insights.*")
-st.write(
-    "Welcome! Explore live interactive visualizations, execute custom SQL queries, "
-    "or upload your own dataset to test the analytical workspace in real time."
-)
-
-st.markdown("<br>", unsafe_allow_html=True)
-
-# KPI Highlight Bar
-col1, col2, col3, col4 = st.columns(4)
-col1.metric(label="Data Processed", value="2.5M+", delta="Rows Cleaned")
-col2.metric(label="SQL Queries Run", value="1,200+", delta="Production Ready")
-col3.metric(label="Portfolio Projects", value="5+", delta="Interactive")
-col4.metric(label="Pipeline Runtime", value="< 2s", delta="Automated")
-
-st.markdown("<br>---<br>", unsafe_allow_html=True)
-
-# ---------------------------------------------------------
-# 4. DATASET SELECTION & UPLOAD MANAGEMENT
-# ---------------------------------------------------------
-st.header("📌 Interactive Data Workspace")
-
-# Data Source Selector (Upload custom CSV OR use default dataset)
-data_source = st.radio(
-    "Choose Data Source:",
-    ["Use Default Portfolio Dataset", "Upload My Own CSV File"],
-    horizontal=True
-)
-
-@st.cache_data
-def get_default_data():
-    # Sample stock / revenue dataset structure
-    data = {
-        'Date': pd.date_range(start='2026-01-01', periods=120, freq='D'),
-        'Category': ['Electronics', 'Software', 'Services', 'Hardware'] * 30,
-        'Region': ['North America', 'Europe', 'Asia-Pacific', 'Latin America'] * 30,
-        'Revenue_USD': [1500, 2400, 800, 3100, 1900, 4200, 1100, 2800] * 15,
-        'Units_Sold': [15, 24, 8, 31, 19, 42, 11, 28] * 15,
-        'Profit_Margin': [0.25, 0.40, 0.15, 0.30] * 30
-    }
-    return pd.DataFrame(data)
-
-if data_source == "Upload My Own CSV File":
-    uploaded_file = st.file_uploader("Upload your CSV file", type=["csv"])
-    if uploaded_file is not None:
-        try:
-            df = pd.read_csv(uploaded_file)
-            st.success(f"Successfully loaded uploaded dataset: **{uploaded_file.name}** ({len(df)} rows)")
-        except Exception as e:
-            st.error(f"Error reading CSV file: {e}")
-            df = get_default_data()
-    else:
-        st.info("Awaiting CSV upload. Displaying default dataset in the meantime.")
-        df = get_default_data()
-else:
-    df = get_default_data()
-
-st.markdown("<br>", unsafe_allow_html=True)
-
-# ---------------------------------------------------------
-# 5. DYNAMIC FILTERS & ADVANCED PLOTLY CHARTS
-# ---------------------------------------------------------
-# Automatically pick categorical columns for filters
-categorical_cols = df.select_dtypes(include=['object', 'category']).columns.tolist()
-numeric_cols = df.select_dtypes(include=['number']).columns.tolist()
-
-if categorical_cols and numeric_cols:
-    filter_col1, filter_col2 = st.columns(2)
+    st.markdown("<br><br>", unsafe_allow_html=True)
     
-    primary_cat = categorical_cols[0]
-    with filter_col1:
-        selected_cats = st.multiselect(
-            f"Filter by {primary_cat}:",
-            options=df[primary_cat].unique(),
-            default=df[primary_cat].unique()
-        )
-    
-    filtered_df = df[df[primary_cat].isin(selected_cats)] if selected_cats else df
-
-    # Workspace Tabs
-    tab1, tab2, tab3 = st.tabs(["📈 Customizable Charts", "💻 Live SQL Sandbox (DuckDB)", "📁 Data Inspection"])
-
-    with tab1:
-        c1, c2 = st.columns([1, 2])
-        
-        with c1:
-            st.subheader("Chart Controls")
-            chart_type = st.selectbox("Select Chart Type:", ["Bar Chart", "Line Chart", "Scatter Plot", "Box Plot"])
-            x_axis = st.selectbox("X-Axis Variable:", options=df.columns, index=0)
-            y_axis = st.selectbox("Y-Axis Variable:", options=numeric_cols, index=min(0, len(numeric_cols)-1))
-            color_by = st.selectbox("Group / Color By:", options=[None] + categorical_cols, index=1 if len(categorical_cols) > 1 else 0)
-
-        with c2:
-            st.subheader("Visual Analytics")
-            
-            # Chart styling config
-            plotly_template = "plotly_dark"
-            custom_colors = px.colors.qualitative.Bold
-            
-            if chart_type == "Bar Chart":
-                fig = px.bar(
-                    filtered_df, x=x_axis, y=y_axis, color=color_by,
-                    barmode="group", template=plotly_template, color_discrete_sequence=custom_colors,
-                    title=f"{y_axis} by {x_axis}"
-                )
-            elif chart_type == "Line Chart":
-                fig = px.line(
-                    filtered_df, x=x_axis, y=y_axis, color=color_by,
-                    template=plotly_template, color_discrete_sequence=custom_colors,
-                    title=f"{y_axis} Trend over {x_axis}"
-                )
-            elif chart_type == "Scatter Plot":
-                fig = px.scatter(
-                    filtered_df, x=x_axis, y=y_axis, color=color_by,
-                    template=plotly_template, color_discrete_sequence=custom_colors,
-                    title=f"{y_axis} vs {x_axis}"
-                )
-            else:
-                fig = px.box(
-                    filtered_df, x=x_axis, y=y_axis, color=color_by,
-                    template=plotly_template, color_discrete_sequence=custom_colors,
-                    title=f"Distribution of {y_axis} across {x_axis}"
-                )
-                
-            fig.update_layout(
-                margin=dict(l=20, r=20, t=40, b=20),
-                paper_bgcolor="rgba(0,0,0,0)",
-                plot_bgcolor="rgba(0,0,0,0)"
-            )
-            st.plotly_chart(fig, use_container_width=True)
-
-    with tab2:
-        st.subheader("Query the Dataset using DuckDB SQL")
-        st.caption("Write standard SQL. Refer to your active dataset as `filtered_df`.")
-        
-        default_sql = f"SELECT {primary_cat}, SUM({numeric_cols[0]}) AS Total_{numeric_cols[0]} FROM filtered_df GROUP BY {primary_cat} ORDER BY Total_{numeric_cols[0]} DESC"
-        user_sql = st.text_area("SQL Editor:", value=default_sql, height=100)
-        
-        if st.button("Execute SQL"):
-            try:
-                res = duckdb.query(user_sql).df()
-                st.success("Query Executed Successfully!")
-                st.dataframe(res, use_container_width=True)
-            except Exception as e:
-                st.error(f"SQL Error: {e}")
-
-    with tab3:
-        st.subheader("Raw Data Table")
-        st.dataframe(filtered_df, use_container_width=True)
-
-else:
-    st.warning("The dataset needs at least one numeric and one text column to display analytics.")
-
-st.markdown("<br>---<br>", unsafe_allow_html=True)
-
-# ---------------------------------------------------------
-# 6. FEATURED CASE STUDIES
-# ---------------------------------------------------------
-st.header("📂 Featured Case Studies")
-
-col_a, col_b = st.columns(2)
-
-with col_a:
-    st.subheader("Financial Ledger & Credit Extraction Pipeline")
+    # Toolbelt Section
     st.markdown("""
-    * **Tools:** Python (`pandas`, `pdfplumber`), SQL
-    * **Summary:** Built an automated extraction pipeline that parses credit transactions from multi-page PDF statements directly into formatted Excel ledgers.
-    """)
-    with st.expander("View Implementation Details"):
-        st.code("""
-import pdfplumber
-import pandas as pd
+        <div class="custom-card">
+            <p style="font-size: 0.75rem; letter-spacing: 2px; color: #5a6b7c; margin-bottom: 20px;">TOOLBELT</p>
+            <div class="tool-row"><span>SQL</span><div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 95%;"></div></div><span>95</span></div>
+            <div class="tool-row"><span>Python</span><div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 90%;"></div></div><span>90</span></div>
+            <div class="tool-row"><span>Power BI</span><div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 88%;"></div></div><span>88</span></div>
+            <div class="tool-row"><span>Excel</span><div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 92%;"></div></div><span>92</span></div>
+            <div class="tool-row"><span>Tableau</span><div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 84%;"></div></div><span>84</span></div>
+            <div class="tool-row"><span>R</span><div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 78%;"></div></div><span>78</span></div>
+            <div class="tool-row"><span>Stata</span><div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 72%;"></div></div><span>72</span></div>
+            <div class="tool-row"><span>SPSS</span><div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 68%;"></div></div><span>68</span></div>
+        </div>
+    """, unsafe_allow_html=True)
 
-# Automated PDF ledger extraction snippet
-with pdfplumber.open("bank_statement.pdf") as pdf:
-    for page in pdf.pages:
-        table = page.extract_table()
-        # Clean transaction rows & format currency fields
-        """, language="python")
-
-with col_b:
-    st.subheader("Interactive Stock & Market Trend Analyzer")
+# --- RIGHT COLUMN: Metrics & Featured Analyses ---
+with col_right:
+    # 4-Grid Metrics
+    m1, m2 = st.columns(2)
+    with m1:
+        st.markdown("""
+            <div class="custom-card" style="margin-bottom: 15px;">
+                <div class="big-metric">6</div>
+                <div style="font-size: 0.75rem; letter-spacing: 1px; margin-top: 10px;">YEARS ANALYSING DATA</div>
+            </div>
+            <div class="custom-card">
+                <div class="big-metric">12M+</div>
+                <div style="font-size: 0.75rem; letter-spacing: 1px; margin-top: 10px;">ROWS MODELLED</div>
+            </div>
+        """, unsafe_allow_html=True)
+    with m2:
+        st.markdown("""
+            <div class="custom-card" style="margin-bottom: 15px;">
+                <div class="big-metric" style="color: #fff;">38</div>
+                <div style="font-size: 0.75rem; letter-spacing: 1px; margin-top: 10px;">DASHBOARDS SHIPPED</div>
+            </div>
+            <div class="custom-card">
+                <div class="big-metric" style="color: #fff;">9</div>
+                <div style="font-size: 0.75rem; letter-spacing: 1px; margin-top: 10px;">MODELS IN PRODUCTION</div>
+            </div>
+        """, unsafe_allow_html=True)
+    
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    # Featured Analyses Cards
     st.markdown("""
-    * **Tools:** Python, Yahoo Finance API, Streamlit, Plotly
-    * **Summary:** Developed a real-time web interface fetching historical stock prices, computing rolling averages, and displaying interactive candlestick charts.
-    """)
-    with st.expander("View Implementation Details"):
-        st.write("Pulled financial data via API endpoints, computed 50-day and 200-day moving averages, and rendered interactive Plotly candlestick charts.")
+        <div class="custom-card">
+            <p style="font-size: 0.75rem; letter-spacing: 2px; color: #5a6b7c; margin-bottom: 20px;">FEATURED ANALYSES</p>
+            
+            <!-- Card 1 -->
+            <div style="margin-bottom: 30px; border-bottom: 1px solid #1c2e40; padding-bottom: 20px;">
+                <p style="color: #20c997; font-size: 0.7rem; letter-spacing: 1px; margin-bottom: 5px;">KPI FRAMEWORK</p>
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div style="width: 70%;">
+                        <h3 class="serif-text" style="margin: 0 0 10px 0; font-size: 1.4rem;">KPI Command Center</h3>
+                        <p style="font-size: 0.85rem;">Replaced 14 conflicting spreadsheets with a single governed KPI layer and one executive Power BI board.</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 1.5rem; color: #fff; font-family: 'Inter';">14 → 1</div>
+                        <div style="font-size: 0.65rem; letter-spacing: 1px; color: #5a6b7c;">SOURCES OF TRUTH</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 2 -->
+            <div style="margin-bottom: 30px; border-bottom: 1px solid #1c2e40; padding-bottom: 20px;">
+                <p style="color: #20c997; font-size: 0.7rem; letter-spacing: 1px; margin-bottom: 5px;">BUSINESS ANALYSIS</p>
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div style="width: 70%;">
+                        <h3 class="serif-text" style="margin: 0 0 10px 0; font-size: 1.4rem;">Business Performance Analysis</h3>
+                        <p style="font-size: 0.85rem;">Cohort and channel margin analysis that found where growth was quietly being sold at a loss.</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 1.5rem; color: #fff; font-family: 'Inter';">+4.8pt</div>
+                        <div style="font-size: 0.65rem; letter-spacing: 1px; color: #5a6b7c;">GROSS MARGIN RECOVERED</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 3 -->
+            <div>
+                <p style="color: #20c997; font-size: 0.7rem; letter-spacing: 1px; margin-bottom: 5px;">RISK MANAGEMENT</p>
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div style="width: 70%;">
+                        <h3 class="serif-text" style="margin: 0 0 10px 0; font-size: 1.4rem;">Credit Risk Scoring</h3>
+                        <p style="font-size: 0.85rem;">A transparent logistic scorecard that beat the legacy rules engine without becoming a black box.</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 1.5rem; color: #fff; font-family: 'Inter';">0.81</div>
+                        <div style="font-size: 0.65rem; letter-spacing: 1px; color: #5a6b7c;">AUC ON HOLDOUT</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
+    
+st.markdown("<br><br><br>", unsafe_allow_html=True)
+
+# 5. FOOTER
+st.markdown("""
+    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #1c2e40; padding-top: 20px; font-size: 0.8rem; color: #5a6b7c;">
+        <div>Alabi Samuel — KPI systems • Business analysis • Risk modelling</div>
+        <div>alabisamuel.analytics@gmail.com</div>
+    </div>
+""", unsafe_allow_html=True)
