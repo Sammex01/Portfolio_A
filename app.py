@@ -1,20 +1,10 @@
 import streamlit as st
-import streamlit.components.v1 as components
 
 # 1. PAGE CONFIGURATION
 st.set_page_config(
     page_title="Alabi Samuel | Data Analyst",
     layout="wide",
     initial_sidebar_state="collapsed"
-)
-# Force page to scroll to top on load
-components.html(
-    """
-    <script>
-        window.parent.document.querySelector('.main').scrollTo(0, 0);
-    </script>
-    """,
-    height=0
 )
 
 # 2. GLOBAL CSS (Matching the Prototype)
@@ -30,10 +20,15 @@ st.markdown("""
     }
     
     /* Hide top header line */
-    header {display: none !important;}
-    [data-testid="stHeader"] {display: none !important;}
+    [data-testid="stHeader"] {
+        display: none !important;
+        height: 0px !important;
+        padding: 0px !important;
+    }
+    
+    /* Pull the main container all the way to the top */
     .block-container {
-        padding-top: 2rem !important;
+        padding-top: 1.5rem !important;
         padding-bottom: 0rem !important;
         padding-left: 3rem !important;
         padding-right: 3rem !important;
