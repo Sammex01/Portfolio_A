@@ -1,10 +1,20 @@
 import streamlit as st
+import streamlit.components.v1 as components
 
 # 1. PAGE CONFIGURATION
 st.set_page_config(
     page_title="Alabi Samuel | Data Analyst",
     layout="wide",
     initial_sidebar_state="collapsed"
+)
+# Force page to scroll to top on load
+components.html(
+    """
+    <script>
+        window.parent.document.querySelector('.main').scrollTo(0, 0);
+    </script>
+    """,
+    height=0
 )
 
 # 2. GLOBAL CSS (Matching the Prototype)
