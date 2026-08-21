@@ -128,91 +128,51 @@ with col_left:
 
 # --- RIGHT COLUMN: Metrics & Featured Analyses ---
 with col_right:
-    # 4-Grid Metrics
-    m1, m2 = st.columns(2)
-    with m1:
-        st.markdown("""
-            <div class="custom-card" style="margin-bottom: 15px;">
-                <div class="big-metric">6</div>
-                <div style="font-size: 0.75rem; letter-spacing: 1px; margin-top: 10px;">YEARS ANALYSING DATA</div>
-            </div>
-            <div class="custom-card">
-                <div class="big-metric">12M+</div>
-                <div style="font-size: 0.75rem; letter-spacing: 1px; margin-top: 10px;">ROWS MODELLED</div>
-            </div>
-        """, unsafe_allow_html=True)
-    with m2:
-        st.markdown("""
-            <div class="custom-card" style="margin-bottom: 15px;">
-                <div class="big-metric" style="color: #fff;">38</div>
-                <div style="font-size: 0.75rem; letter-spacing: 1px; margin-top: 10px;">DASHBOARDS SHIPPED</div>
-            </div>
-            <div class="custom-card">
-                <div class="big-metric" style="color: #fff;">9</div>
-                <div style="font-size: 0.75rem; letter-spacing: 1px; margin-top: 10px;">MODELS IN PRODUCTION</div>
-            </div>
-        """, unsafe_allow_html=True)
-    
-    st.markdown("<br>", unsafe_allow_html=True)
-    
-    # Featured Analyses Cards
+   # Featured Analyses Cards
     st.markdown("""
-        <div class="custom-card">
-            <p style="font-size: 0.75rem; letter-spacing: 2px; color: #5a6b7c; margin-bottom: 20px;">FEATURED ANALYSES</p>
-            
-            <!-- Card 1 -->
-            <div style="margin-bottom: 30px; border-bottom: 1px solid #1c2e40; padding-bottom: 20px;">
-                <p style="color: #20c997; font-size: 0.7rem; letter-spacing: 1px; margin-bottom: 5px;">KPI FRAMEWORK</p>
-                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                    <div style="width: 70%;">
-                        <h3 class="serif-text" style="margin: 0 0 10px 0; font-size: 1.4rem;">KPI Command Center</h3>
-                        <p style="font-size: 0.85rem;">Replaced 14 conflicting spreadsheets with a single governed KPI layer and one executive Power BI board.</p>
-                    </div>
-                    <div style="text-align: right;">
-                        <div style="font-size: 1.5rem; color: #fff; font-family: 'Inter';">14 → 1</div>
-                        <div style="font-size: 0.65rem; letter-spacing: 1px; color: #5a6b7c;">SOURCES OF TRUTH</div>
-                    </div>
-                </div>
+<div class="custom-card">
+    <p style="font-size: 0.75rem; letter-spacing: 2px; color: #5a6b7c; margin-bottom: 20px;">FEATURED ANALYSES</p>
+    
+    <div style="margin-bottom: 30px; border-bottom: 1px solid #1c2e40; padding-bottom: 20px;">
+        <p style="color: #20c997; font-size: 0.7rem; letter-spacing: 1px; margin-bottom: 5px;">KPI FRAMEWORK</p>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div style="width: 70%;">
+                <h3 class="serif-text" style="margin: 0 0 10px 0; font-size: 1.4rem;">KPI Command Center</h3>
+                <p style="font-size: 0.85rem;">Replaced 14 conflicting spreadsheets with a single governed KPI layer and one executive Power BI board.</p>
             </div>
-            
-            <!-- Card 2 -->
-            <div style="margin-bottom: 30px; border-bottom: 1px solid #1c2e40; padding-bottom: 20px;">
-                <p style="color: #20c997; font-size: 0.7rem; letter-spacing: 1px; margin-bottom: 5px;">BUSINESS ANALYSIS</p>
-                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                    <div style="width: 70%;">
-                        <h3 class="serif-text" style="margin: 0 0 10px 0; font-size: 1.4rem;">Business Performance Analysis</h3>
-                        <p style="font-size: 0.85rem;">Cohort and channel margin analysis that found where growth was quietly being sold at a loss.</p>
-                    </div>
-                    <div style="text-align: right;">
-                        <div style="font-size: 1.5rem; color: #fff; font-family: 'Inter';">+4.8pt</div>
-                        <div style="font-size: 0.65rem; letter-spacing: 1px; color: #5a6b7c;">GROSS MARGIN RECOVERED</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Card 3 -->
-            <div>
-                <p style="color: #20c997; font-size: 0.7rem; letter-spacing: 1px; margin-bottom: 5px;">RISK MANAGEMENT</p>
-                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                    <div style="width: 70%;">
-                        <h3 class="serif-text" style="margin: 0 0 10px 0; font-size: 1.4rem;">Credit Risk Scoring</h3>
-                        <p style="font-size: 0.85rem;">A transparent logistic scorecard that beat the legacy rules engine without becoming a black box.</p>
-                    </div>
-                    <div style="text-align: right;">
-                        <div style="font-size: 1.5rem; color: #fff; font-family: 'Inter';">0.81</div>
-                        <div style="font-size: 0.65rem; letter-spacing: 1px; color: #5a6b7c;">AUC ON HOLDOUT</div>
-                    </div>
-                </div>
+            <div style="text-align: right;">
+                <div style="font-size: 1.5rem; color: #fff; font-family: 'Inter';">14 &rarr; 1</div>
+                <div style="font-size: 0.65rem; letter-spacing: 1px; color: #5a6b7c;">SOURCES OF TRUTH</div>
             </div>
         </div>
-    """, unsafe_allow_html=True)
-    
-st.markdown("<br><br><br>", unsafe_allow_html=True)
-
-# 5. FOOTER
-st.markdown("""
-    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #1c2e40; padding-top: 20px; font-size: 0.8rem; color: #5a6b7c;">
-        <div>Alabi Samuel — KPI systems • Business analysis • Risk modelling</div>
-        <div>alabisamuel.analytics@gmail.com</div>
     </div>
-""", unsafe_allow_html=True)
+    
+    <div style="margin-bottom: 30px; border-bottom: 1px solid #1c2e40; padding-bottom: 20px;">
+        <p style="color: #20c997; font-size: 0.7rem; letter-spacing: 1px; margin-bottom: 5px;">BUSINESS ANALYSIS</p>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div style="width: 70%;">
+                <h3 class="serif-text" style="margin: 0 0 10px 0; font-size: 1.4rem;">Business Performance Analysis</h3>
+                <p style="font-size: 0.85rem;">Cohort and channel margin analysis that found where growth was quietly being sold at a loss.</p>
+            </div>
+            <div style="text-align: right;">
+                <div style="font-size: 1.5rem; color: #fff; font-family: 'Inter';">+4.8pt</div>
+                <div style="font-size: 0.65rem; letter-spacing: 1px; color: #5a6b7c;">GROSS MARGIN RECOVERED</div>
+            </div>
+        </div>
+    </div>
+    
+    <div>
+        <p style="color: #20c997; font-size: 0.7rem; letter-spacing: 1px; margin-bottom: 5px;">RISK MANAGEMENT</p>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div style="width: 70%;">
+                <h3 class="serif-text" style="margin: 0 0 10px 0; font-size: 1.4rem;">Credit Risk Scoring</h3>
+                <p style="font-size: 0.85rem;">A transparent logistic scorecard that beat the legacy rules engine without becoming a black box.</p>
+            </div>
+            <div style="text-align: right;">
+                <div style="font-size: 1.5rem; color: #fff; font-family: 'Inter';">0.81</div>
+                <div style="font-size: 0.65rem; letter-spacing: 1px; color: #5a6b7c;">AUC ON HOLDOUT</div>
+            </div>
+        </div>
+    </div>
+</div>
+    """, unsafe_allow_html=True)
