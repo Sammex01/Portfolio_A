@@ -102,7 +102,7 @@ st.markdown("""
 
 # 3. TOP NAVIGATION HEADER (Prototype Match)
 st.markdown("""
-    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0 20px 0; border-bottom: 1px solid #1c2e40; margin-bottom: 40px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0 10px 0; border-bottom: 1px solid #1c2e40; margin-bottom: 40px;">
         <div style="color: #fff; font-weight: 600; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
             <span class="teal-accent" style="font-size: 0.8rem;">●</span> 
             <span>Alabi Samuel</span> 
