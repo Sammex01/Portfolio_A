@@ -21,11 +21,12 @@ st.markdown("""
     
     /* Hide top header line */
     header {visibility: hidden;}
-    /* Remove Streamlit default top padding */
     .block-container {
         padding-top: 2rem !important;
         padding-bottom: 0rem !important;
-        max-width: 90% !important;
+        padding-left: 3rem !important;
+        padding-right: 3rem !important;
+        max-width: 100% !important;
     }
     
     /* Typography Overrides */
