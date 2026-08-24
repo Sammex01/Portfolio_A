@@ -1,18 +1,21 @@
+import base64
 import streamlit as st
 
-# 1. PAGE CONFIGURATION
+# ==========================================
+# SECTION 1: PAGE SETUP & CORE THEME
+# ==========================================
 st.set_page_config(
     page_title="Alabi Samuel | Data Analyst",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
-# 2. GLOBAL CSS (Matching the Prototype)
 st.markdown("""
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600;700&display=swap');
+    /* Import Correct Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@400;600&display=swap');
 
-    /* Global Background and Text Colors */
+    /* Global Background, Grid Texture, and Default Text */
     .stApp {
         background-color: #091725;
         background-image: 
@@ -23,188 +26,176 @@ st.markdown("""
         font-family: 'Work Sans', sans-serif;
     }
     
-    /* Hide top header line */
+    /* Obliterate Default Streamlit Header & Spacing */
     [data-testid="stHeader"] {
         display: none !important;
         height: 0px !important;
         padding: 0px !important;
     }
     
-    /* Pull the main container all the way to the top */
+    /* Layout Container Settings (Flush Top, Custom Margins) */
     .block-container {
-        padding-top: 0.5rem !important;
+        padding-top: 0rem !important;
         padding-bottom: 0rem !important;
-        padding-left: 3rem !important;
-        padding-right: 3rem !important;
+        padding-left: 80px !important; /* Exactly two grid boxes */
+        padding-right: 80px !important; /* Exactly two grid boxes */
         max-width: 100% !important;
     }
-    
-    /* Typography Overrides */
+
+    /* Headings (Instrument Serif) */
     h1, h2, h3, .serif-text {
         font-family: 'Instrument Serif', serif;
         color: #ffffff;
         font-weight: 400;
         letter-spacing: 0.5px;
     }
-    h1 { font-size: 4rem; margin-bottom: 10px; line-height: 1.1; }
-    h2 { font-size: 2rem; margin-bottom: 20px; }
+    h1 { font-size: 3.5rem; margin-bottom: 10px; line-height: 1.1; }
     
-    /* Neon Mint Accent Colors & Glow */
-    .teal-accent { 
-        color: #37D8A8; 
-        text-shadow: 0 0 8px rgba(55, 216, 168, 0.4);
-    }
-    
-    /* Card Containers */
-   .custom-card {
+    /* Panel / Card Backgrounds (#10212F) */
+    .custom-card {
         background-color: #10212F;
         padding: 25px;
-        border-radius: 4px; 
-        border: 1px solid rgba(55, 216, 168, 0.15); 
+        border-radius: 4px;
+        border: 1px solid rgba(55, 216, 168, 0.15); /* Faint mint border */
         height: 100%;
     }
     
-    /* Big Metric Numbers */
-   .big-metric {
+    /* Neon Mint Metrics (#37D8A8) */
+    .big-metric {
         font-size: 2.8rem;
         color: #37D8A8;
         font-family: 'Work Sans', sans-serif;
         font-weight: 600;
         line-height: 1.2;
         font-variant-numeric: tabular-nums;
-        text-shadow: 0 0 12px rgba(55, 216, 168, 0.35);
-    }
-    
-    /* Custom Button */
-    .stButton>button {
-        background-color: #37D8A8;
-        color: #091725;
-        border: none;
-        border-radius: 2px;
-        font-family: 'Work Sans', sans-serif;
-        font-weight: 600;
-        padding: 10px 24px;
-        transition: all 0.3s ease;
-    }
-    .stButton>button:hover { 
-        background-color: #73ffb8; 
-        color: #091725; 
-        box-shadow: 0 0 12px rgba(115, 255, 184, 0.4);
-    }
-    
-    /* Progress Bars Toolbelt */
-    .stButton>button:hover { 
-        background-color: #73ffb8; 
-        color: #091725; 
-        box-shadow: 0 0 12px rgba(115, 255, 184, 0.4);
+        text-shadow: 0 0 12px rgba(55, 216, 168, 0.35); /* Subtle glow */
     }
     </style>
 """, unsafe_allow_html=True)
-
-# 3. TOP NAVIGATION HEADER (Prototype Match)
-# 3. TOP NAVIGATION HEADER
+# ==========================================
+# SECTION 2: TOP NAVIGATION BAR
+# ==========================================
 st.markdown("""
-    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0 10px 0; border-bottom: 1px solid #1c2e40; margin-bottom: 40px;">
-        <div style="color: #fff; font-weight: 600; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
-            <span style="color: #37D8A8; font-size: 0.75rem; margin-top: 2px;">●</span> 
-            <span>Alabi Samuel</span> 
-            <span style="color: #5a6b7c; font-weight: 400;">/ Data Analyst</span>
-        </div>
-        <div style="display: flex; gap: 15px; font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px; align-items: center;">
-            <span style="color: #37D8A8; border: 1px solid #fff; padding: 8px 16px; border-radius: 4px; cursor: pointer;">DASHBOARD</span>
-            <span style="color: #8b9eb0; padding: 8px 16px; cursor: pointer;">CASE STUDIES</span>
-            <span style="color: #8b9eb0; padding: 8px 16px; cursor: pointer;">ABOUT</span>
-            <span style="color: #8b9eb0; padding: 8px 16px; cursor: pointer;">CONTACT</span>
-        </div>
-    </div>
-""", unsafe_allow_html=True)
-
-# 4. MAIN LAYOUT GRID
-col_left, col_right = st.columns([1.2, 1])
-
-# --- LEFT COLUMN: Hero Section & Toolbelt ---
-with col_left:
-    st.markdown("<p style='color: #20c997; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px;'>KPI SYSTEMS • BUSINESS ANALYSIS • RISK MODELLING</p>", unsafe_allow_html=True)
-    st.markdown("<h1>Alabi Samuel</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='font-size: 1.2rem; color: #a0aec0; margin-bottom: 30px; max-width: 90%;'>I turn messy operational data into the two or three numbers a business can actually act on.</p>", unsafe_allow_html=True)
-    
-    c1, c2 = st.columns([1, 2])
-    with c1:
-        st.button("Read the case studies")
-    with c2:
-        st.markdown("<p style='font-size: 0.85rem; color: #5a6b7c; margin-top: 10px;'>Available worldwide • Remote</p>", unsafe_allow_html=True)
-    
-    st.markdown("<br><br>", unsafe_allow_html=True)
-    
-    # Toolbelt Section
-    st.markdown("""
-        <div class="custom-card">
-            <p style="font-size: 0.75rem; letter-spacing: 2px; color: #5a6b7c; margin-bottom: 20px;">TOOLBELT</p>
-            <div class="tool-row"><span>SQL</span><div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 95%;"></div></div><span>95</span></div>
-            <div class="tool-row"><span>Python</span><div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 90%;"></div></div><span>90</span></div>
-            <div class="tool-row"><span>Power BI</span><div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 88%;"></div></div><span>88</span></div>
-            <div class="tool-row"><span>Excel</span><div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 92%;"></div></div><span>92</span></div>
-            <div class="tool-row"><span>Tableau</span><div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 84%;"></div></div><span>84</span></div>
-            <div class="tool-row"><span>R</span><div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 78%;"></div></div><span>78</span></div>
-            <div class="tool-row"><span>Stata</span><div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 72%;"></div></div><span>72</span></div>
-            <div class="tool-row"><span>SPSS</span><div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 68%;"></div></div><span>68</span></div>
-        </div>
-    """, unsafe_allow_html=True)
-
-# --- RIGHT COLUMN: Metrics & Featured Analyses ---
-with col_right:
-# Featured Analyses Cards (Bulletproof HTML)
-    st.markdown("""
-<div class="custom-card">
-    <p style="font-size: 0.75rem; letter-spacing: 2px; color: #5a6b7c; margin-bottom: 20px;">FEATURED ANALYSES</p>
-    <div style="margin-bottom: 30px; border-bottom: 1px solid #1c2e40; padding-bottom: 20px;">
-        <p style="color: #20c997; font-size: 0.7rem; letter-spacing: 1px; margin-bottom: 5px;">KPI FRAMEWORK</p>
-        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-            <div style="width: 70%;">
-                <h3 class="serif-text" style="margin: 0 0 10px 0; font-size: 1.4rem;">KPI Command Center</h3>
-                <p style="font-size: 0.85rem; margin: 0;">Replaced 14 conflicting spreadsheets with a single governed KPI layer and one executive Power BI board.</p>
-            </div>
-            <div style="text-align: right;">
-                <div style="font-size: 1.5rem; color: #fff; font-family: 'Inter';">14 &rarr; 1</div>
-                <div style="font-size: 0.65rem; letter-spacing: 1px; color: #5a6b7c;">SOURCES OF TRUTH</div>
-            </div>
-        </div>
-    </div>
-    <div style="margin-bottom: 30px; border-bottom: 1px solid #1c2e40; padding-bottom: 20px;">
-        <p style="color: #20c997; font-size: 0.7rem; letter-spacing: 1px; margin-bottom: 5px;">BUSINESS ANALYSIS</p>
-        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-            <div style="width: 70%;">
-                <h3 class="serif-text" style="margin: 0 0 10px 0; font-size: 1.4rem;">Business Performance Analysis</h3>
-                <p style="font-size: 0.85rem; margin: 0;">Cohort and channel margin analysis that found where growth was quietly being sold at a loss.</p>
-            </div>
-            <div style="text-align: right;">
-                <div style="font-size: 1.5rem; color: #fff; font-family: 'Inter';">+4.8pt</div>
-                <div style="font-size: 0.65rem; letter-spacing: 1px; color: #5a6b7c;">GROSS MARGIN RECOVERED</div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <p style="color: #20c997; font-size: 0.7rem; letter-spacing: 1px; margin-bottom: 5px;">RISK MANAGEMENT</p>
-        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-            <div style="width: 70%;">
-                <h3 class="serif-text" style="margin: 0 0 10px 0; font-size: 1.4rem;">Credit Risk Scoring</h3>
-                <p style="font-size: 0.85rem; margin: 0;">A transparent logistic scorecard that beat the legacy rules engine without becoming a black box.</p>
-            </div>
-            <div style="text-align: right;">
-                <div style="font-size: 1.5rem; color: #fff; font-family: 'Inter';">0.81</div>
-                <div style="font-size: 0.65rem; letter-spacing: 1px; color: #5a6b7c;">AUC ON HOLDOUT</div>
-            </div>
-        </div>
-    </div>
+<style>
+.nav-link {
+color: oklch(0.71 0.025 200);
+font-weight: 400;
+font-size: 12px;
+line-height: 18px;
+letter-spacing: 1.5px;
+padding: 4px 10px;
+cursor: pointer;
+transition: color 0.2s ease-in-out;
+}
+.nav-link:hover {
+color: #ffffff;
+}
+.active-link {
+color: #37D8A8;
+font-weight: 400;
+font-size: 14px;
+line-height: 18px;
+letter-spacing: 1.5px;
+padding: 4px 10px;
+cursor: default;
+}
+</style>
+<div style="position: sticky; top: 0; background-color: #091725; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 0px 80px 10px 80px; margin: 0 -80px 40px -80px; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+<div style="display: flex; align-items: center; gap: 8px;">
+<span style="color: #37D8A8; font-size: 17px;">●</span> 
+<span style="color: oklch(0.95 0.012 180); font-weight: 500; font-size: 14px; line-height: 22px;">Alabi Samuel</span> 
+<span style="color: oklch(0.71 0.025 200); font-weight: 400; font-size: 13px; line-height: 18px;">/ Data Analyst</span>
+</div>
+<div style="display: flex; gap: 12px; align-items: center;">
+<span class="active-link">DASHBOARD</span>
+<span class="nav-link">CASE STUDIES</span>
+<span class="nav-link">ABOUT</span>
+<span class="nav-link">CONTACT</span>
+</div>
 </div>
 """, unsafe_allow_html=True)
-    
-st.markdown("<br><br><br>", unsafe_allow_html=True)
+# ==========================================
+# SECTION 3: HERO AREA & METRICS GRID
+# ==========================================
+import base64
 
-# 5. FOOTER
-st.markdown("""
-    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #1c2e40; padding-top: 20px; font-size: 0.8rem; color: #5a6b7c;">
-        <div>Alabi Samuel — KPI systems • Business analysis • Risk modelling</div>
-        <div>alabisamuel.analytics@gmail.com</div>
-    </div>
-""", unsafe_allow_html=True)
+# Convert local image to base64 string so Streamlit HTML can render it
+try:
+    # Pointing exactly to the folder and double-extension file
+    with open("assests/me.png.png", "rb") as img_file: 
+        img_b64 = base64.b64encode(img_file.read()).decode()
+    img_src = f"data:image/png;base64,{img_b64}"
+except FileNotFoundError:
+    img_src = "" # Fails gracefully if me.png is missing
+
+html_code = """
+<style>
+.hero-btn {
+background-color: oklch(0.79 0.147 168);
+color: oklch(0.18 0.035 250);
+font-weight: 500;
+font-size: 14px;
+line-height: 20px;
+padding: 11px 23px; 
+border: 1px solid transparent; 
+border-radius: 2px;
+cursor: pointer;
+transition: all 0.3s ease;
+display: inline-block;
+}
+.hero-btn:hover {
+background-color: transparent;
+border: 1px solid #37D8A8;
+box-shadow: 0 0 12px rgba(55, 216, 168, 0.6), inset 0 0 8px rgba(55, 216, 168, 0.3);
+color: #37D8A8;
+text-shadow: 0 0 8px rgba(55, 216, 168, 0.8);
+}
+.metric-num {
+color: oklch(0.79 0.147 168);
+font-weight: 400;
+font-size: 30px;
+line-height: 36px;
+text-shadow: 0 0 10px rgba(55, 216, 168, 0.4), 0 0 20px rgba(55, 216, 168, 0.2);
+display: inline-block;
+}
+</style>
+<div style="display: flex; gap: 16px; align-items: stretch; margin-top: 0px;">
+<div style="flex: 0 0 700px; min-height: 250px; background-color: #10212F; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 4px; padding: 32px 48px; display: flex; justify-content: space-between; align-items: center;">
+<div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; max-width: 420px;">
+<div>
+<div style="color: oklch(0.79 0.147 168); font-weight: 400; font-size: 12px; line-height: 16px; letter-spacing: 2px; margin-bottom: 16px;">KPI SYSTEMS · BUSINESS ANALYSIS · RISK MODELLING</div>
+<div style="color: oklch(0.95 0.012 180); font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 60px; line-height: 63px; margin-bottom: 16px;">Alabi Samuel</div>
+<div style="color: oklch(0.71 0.025 200); font-weight: 400; font-size: 16px; line-height: 26px;">I turn messy operational data into the two or three numbers a business can actually act on.</div>
+</div>
+<div style="display: flex; align-items: center; gap: 24px; margin-top: 24px;">
+<div class="hero-btn">Read the case studies</div>
+<div style="color: oklch(0.71 0.025 200); font-weight: 400; font-size: 12px; line-height: 16px;">Available worldwide · Remote</div>
+</div>
+</div>
+<div style="display: flex; align-items: center; justify-content: flex-end;">
+<img src="INSERT_IMAGE_HERE" style="width: 140px; height: 140px; border-radius: 50%; border: 2px solid #37D8A8; object-fit: cover; box-shadow: 0 0 15px rgba(55, 216, 168, 0.3);">
+</div>
+</div>
+<div style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; background-color: #10212F; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 4px;">
+<div style="padding: 24px 32px; border-right: 1px solid rgba(255, 255, 255, 0.08); border-bottom: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; justify-content: center;">
+<div class="metric-num">6</div>
+<div style="color: oklch(0.71 0.025 200); font-weight: 400; font-size: 11px; line-height: 15px; letter-spacing: 1px; margin-top: 8px;">YEARS ANALYSING<br>DATA</div>
+</div>
+<div style="padding: 24px 32px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; justify-content: center;">
+<div class="metric-num">38</div>
+<div style="color: oklch(0.71 0.025 200); font-weight: 400; font-size: 11px; line-height: 15px; letter-spacing: 1px; margin-top: 8px;">DASHBOARDS<br>SHIPPED</div>
+</div>
+<div style="padding: 24px 32px; border-right: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; justify-content: center;">
+<div class="metric-num">12M+</div>
+<div style="color: oklch(0.71 0.025 200); font-weight: 400; font-size: 11px; line-height: 15px; letter-spacing: 1px; margin-top: 8px;">ROWS MODELLED</div>
+</div>
+<div style="padding: 24px 32px; display: flex; flex-direction: column; justify-content: center;">
+<div class="metric-num">9</div>
+<div style="color: oklch(0.71 0.025 200); font-weight: 400; font-size: 11px; line-height: 15px; letter-spacing: 1px; margin-top: 8px;">MODELS IN<br>PRODUCTION</div>
+</div>
+</div>
+</div>
+"""
+
+# Replace the placeholder with the actual base64 string and render
+st.markdown(html_code.replace("", img_src), unsafe_allow_html=True)
